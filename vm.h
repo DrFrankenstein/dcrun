@@ -15,7 +15,7 @@ namespace dcrun
     {
         deque<value*>   valstack;
         value           registers[UCHAR_MAX];
-        unsigned long   precision;
+        unsigned int    scale;
 
         static vm       instance;
 
@@ -25,6 +25,9 @@ namespace dcrun
 
     public:
         static vm&      get();
+
+        unsigned int   precision();
+        void            precision(unsigned int prec);
 
         void            push(value* val);
 

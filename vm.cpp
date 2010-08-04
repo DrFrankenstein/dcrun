@@ -15,12 +15,22 @@ namespace dcrun
     vm vm::instance;
 
     vm::vm()
-        : precision(0)
+        : scale(0)
     {}
 
     vm& vm::get()
     {
         return vm::instance;
+    }
+
+    unsigned int vm::precision()
+    {
+        return this->scale;
+    }
+
+    void vm::precision(unsigned int prec)
+    {
+        this->scale = prec;
     }
 
     void vm::push(value* val)
