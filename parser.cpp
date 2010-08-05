@@ -45,7 +45,7 @@ namespace dcrun
                 if(isdigit(c) || c == '_' || c == '.')
                 {
                     ostringstream ss;
-                    bool had_sign;
+                    bool had_sign = false, had_point = false;
                     
                     if(c == '_')
                     {
@@ -54,7 +54,9 @@ namespace dcrun
                         ss << '-';
                     }
 
-                    while(isdigit(c = this->stream.peek()) || this->stream.peek() == '.'
+                    while(
+                        isdigit(c = this->stream.peek())
+                        || !had_point && this->stream.peek() == '.'
                         || had_sign && isspace(this->stream.peek()))
                     {
                         c = this->stream.get();
@@ -62,6 +64,10 @@ namespace dcrun
                         {
                             ss << static_cast<char>(c);
                             had_sign = false;
+                        }
+                        if(c == '.')
+                        {
+                            had_point = true;
                         }
                     }
 
