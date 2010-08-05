@@ -137,4 +137,29 @@ namespace dcrun
 
         this->push(new number_value(left.get() / right.get()));
     }
+
+    void vm::exponentiate()
+    {
+        number_value exponent = *this->get_number();
+        this->pop();
+
+        number_value base     = *this->get_number();
+        this->pop();
+
+        mpf_t res;
+        mpf_init(res);
+        mpf_pow_ui(res, base.get().get_mpf_t(), mpf_class(abs(exponent.get())).get_ui());
+
+        this->push(new number_value(mpf_class(res)));
+
+        mpf_clear(res);
+    }
+
+    void vm::sqrt()
+    {
+        number_value val = *this->get_number();
+        this->pop();
+
+        this->push(new number_value(::sqrt(val.get())));
+    }
 }

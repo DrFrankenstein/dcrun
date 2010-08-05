@@ -121,6 +121,12 @@ namespace dcrun
                         case '/':
                             dcvm.divide();
                             break;
+                        case '^':
+                            dcvm.exponentiate();
+                            break;
+                        case 'v':
+                            dcvm.sqrt();
+                            break;
 
                         case 'q':
                             return;

@@ -39,6 +39,8 @@ namespace dcrun
         void            subtract();
         void            multiply();
         void            divide();
+        void            exponentiate();
+        void            sqrt();
 
     private:
         vm();
